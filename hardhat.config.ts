@@ -82,27 +82,30 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "hardhat",
+  defaultNetwork: 'hardhat',
   networks: {
     hardhat: {},
-    berachain: {
+    fantom: {
       chainId: 250,
-      url: "https://rpcapi.fantom.network",
-      accounts: {
-        mnemonic: process.env.MNEMONIC,
-      },
+      url: 'https://rpcapi.ftmchain.network',
+      accounts: [`0x${process.env.KEY}`]
     },
-    berachaintestnet: {
+    fantomtestnet: {
       chainId: 4002,
-      url: "https://rpc.testnet.fantom.network",
-      accounts: {
-        mnemonic: process.env.MNEMONIC,
-      },
-    },
+      url: 'https://rpc.testnet.fantom.network',
+      accounts: [`0x${process.env.KEY}`]
+    }
   },
   etherscan: {
-    apiKey: process.env.FTMSCAN_API_KEY,
+    apiKey: process.env.FTMSCAN_API_KEY
   },
+typechain: {
+    outDir: "typechain",
+    target: "ethers-v5",
+},
+mocha: {
+    timeout: 100000,
+},
 };
 
 export default config;
